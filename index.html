@@ -28,7 +28,7 @@
 <body>
   <header id="header" class="inner"><div class="alignleft">
   <h1><a href="/">Code is like poerty</a></h1>
-  <h2><a href="/">Andreas Daskalopoulos homepage and weblog</a></h2>
+  <h2><a href="/">Andreas Daskalopoulos - Code snippets</a></h2>
 </div>
 <nav id="main-nav" class="alignright">
   <ul>
@@ -49,25 +49,18 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-03-08T20:04:40.412Z"><a href="/2015/03/08/hello-world/">2015-03-08</a></time>
+        <time datetime="2015-03-08T20:54:55.000Z"><a href="/2015/03/08/Loop through array in JavaScript/">2015-03-08</a></time>
       
       
   
-    <h1 class="title"><a href="/2015/03/08/hello-world/">Hello World</a></h1>
+    <h1 class="title"><a href="/2015/03/08/Loop through array in JavaScript/">Looping through array in Javascript</a></h1>
   
 
     </header>
     <div class="entry">
       
-        <p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h2 id="First_way">First way</h2><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myStringArray = [<span class="string">"Hello"</span>, <span class="string">"World"</span>]</span><br><span class="line"><span class="keyword">var</span> len = myStringArray.length</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; ++i) &#123;</span><br><span class="line">    <span class="keyword">if</span> (i <span class="keyword">in</span> myStringArray) &#123;</span><br><span class="line">        <span class="keyword">var</span> s = myStringArray[i];</span><br><span class="line">        ...<span class="keyword">do</span> something <span class="keyword">with</span> s...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Second_way">Second way</h2><figure class="highlight scheme"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="list">[<span class="keyword">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>].map<span class="list">(<span class="keyword">function</span><span class="list">(<span class="keyword">item</span>)</span> &#123;</span><br><span class="line">    alert<span class="list">(<span class="keyword">item</span>)</span><span class="comment">;</span></span><br><span class="line">&#125;)</span></span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -101,6 +94,15 @@
   
 
   
+<div class="widget tag">
+  <h3 class="title">tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Javascript/">Javascript**</a><small>1</small></li>
+  
+  </ul>
+</div>
+
 </aside>
     <div class="clearfix"></div>
   </div>
