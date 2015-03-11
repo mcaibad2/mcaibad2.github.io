@@ -103,6 +103,7 @@ a:hover {
 }
 img[alt=me] {
   float: left;
+  margin-right: 15px;
 }
 #header {
   text-shadow: 0 0 1px #fff;
