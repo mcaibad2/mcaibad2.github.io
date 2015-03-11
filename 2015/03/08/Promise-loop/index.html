@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Promises loop | Code is like poerty</title>
+  <meta name="viewport" content="width=device-width">
+  <meta name="description" content="When started working with promises and node.js to loop a promise array I used an async promise while loop (http://blog.victorquinn.com/javascript-promise-while-loop).
+The following is a better way to">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promises loop">
+<meta property="og:url" content="http://yoursite.com/2015/03/08/Promise-loop/index.html">
+<meta property="og:site_name" content="Code is like poerty">
+<meta property="og:description" content="When started working with promises and node.js to loop a promise array I used an async promise while loop (http://blog.victorquinn.com/javascript-promise-while-loop).
+The following is a better way to">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Promises loop">
+<meta name="twitter:description" content="When started working with promises and node.js to loop a promise array I used an async promise while loop (http://blog.victorquinn.com/javascript-promise-while-loop).
+The following is a better way to">
+  
+    <link rel="alternative" href="/atom.xml" title="Code is like poerty" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div class="mobile-nav-panel">
+	<i class="icon-reorder icon-large"></i>
+</div>
+<header id="header">
+	<h1 class="blog-title">
+		<a href="/">Code is like poerty</a>
+	</h1>
+	<nav class="nav">
+		<ul>
+			<li><a href="/">Home</a></li><li><a href="/bio">Bio</a></li><li><a href="/archives">Archives</a></li>
+			<li><a id="nav-search-btn" class="nav-icon" title="Search"></a></li>
+			<li><a href="/atom.xml" id="nav-rss-link" class="nav-icon" title="RSS Feed"></a></li>
+		</ul>
+	</nav>
+	<div id="search-form-wrap">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+	</div>
+</header>
+    <div id="main">
+      <article id="post-Promise-loop" class="post">
+	<footer class="entry-meta-header">
+		<span class="meta-elements date">
+			<a href="/2015/03/08/Promise-loop/" class="article-date">
+  <time datetime="2015-03-08T21:11:02.000Z" itemprop="datePublished">2015-03-08</time>
+</a>
+		</span>
+		<span class="meta-elements author">Andreas Daskalopoulos</span>
+		<div class="commentscount">
+			
+		</div>
+	</footer>
+	
+	<header class="entry-header">
+		
+  
+    <h1 class="article-title entry-title" itemprop="name">
+      Promises loop
+    </h1>
+  
+
+	</header>
+	<div class="entry-content">
+		
+    	<p>When started working with promises and node.js to loop a promise array I used an async promise while loop (<a href="http://blog.victorquinn.com/javascript-promise-while-loop" target="_blank" rel="external">http://blog.victorquinn.com/javascript-promise-while-loop</a>).</p>
+<p>The following is a better way to carry out the task.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> db = <span class="built_in">require</span>(<span class="string">'../../models/db'</span>);</span><br><span class="line"><span class="keyword">var</span> Promise = <span class="built_in">require</span>(<span class="string">'bluebird'</span>);</span><br><span class="line"><span class="keyword">var</span> HomeBanner = Promise.promisifyAll(<span class="built_in">require</span>(<span class="string">'../../models/homeBanner'</span>));</span><br><span class="line"><span class="keyword">var</span> constants = <span class="built_in">require</span>(<span class="string">'../../utils/constants'</span>);</span><br><span class="line">HomeBanner.findAsync(&#123;&#125;).map(<span class="function"><span class="keyword">function</span><span class="params">(homebanner)</span> </span>&#123;</span><br><span class="line">    homebanner.actionType = constants.BANNERACTIONTYPE_SCREEN;</span><br><span class="line">    <span class="keyword">if</span> (homebanner._doc[<span class="string">'screen'</span>]) &#123;</span><br><span class="line">        homebanner.action = homebanner._doc[<span class="string">'screen'</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    homebanner.platform = constants.PLATFORM_ANDROID;</span><br><span class="line">    <span class="keyword">return</span> homebanner;</span><br><span class="line">&#125;).each(<span class="function"><span class="keyword">function</span><span class="params">(homebanner)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Homebanner action now is: '</span> + homebanner.action + <span class="string">" "</span> + homebanner._id);</span><br><span class="line">    <span class="keyword">return</span> homebanner.saveForResult();</span><br><span class="line">&#125;).each(<span class="function"><span class="keyword">function</span><span class="params">(homebanner)</span> </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'Homebanner saved: '</span> + homebanner.action + <span class="string">" "</span> + homebanner._id);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+    
+	</div>
+	<footer class="entry-footer">
+		<div class="entry-meta-footer">
+			<span class="category">
+				
+			</span>
+			<span class="tags">
+				
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+			</span>
+		</div>
+	</footer>
+	
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/03/08/Loop through array in JavaScript/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">
+        
+          Looping through array in Javascript
+        
+      </div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+
+
+    </div>
+    <div class="mb-search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Search">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+<footer id="footer">
+	<h1 class="footer-blog-title">
+		<a href="/">Code is like poerty</a>
+	</h1>
+	<span class="copyright">
+		&copy; 2015 Andreas Daskalopoulos<br>
+		Modify from <a href="http://sanographix.github.io/tumblr/apollo/" target="_blank">Apollo</a> theme, designed by <a href="http://www.sanographix.net/" target="_blank">SANOGRAPHIX.NET</a><br>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+	</span>
+</footer>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+  </div>
+</body>
+</html>
