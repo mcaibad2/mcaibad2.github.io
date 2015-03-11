@@ -101,6 +101,9 @@ a:hover {
     margin-right: 0;
   }
 }
+img[alt=me] {
+  float: left;
+}
 #header {
   text-shadow: 0 0 1px #fff;
   margin: 50px auto;
